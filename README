@@ -1,0 +1,16 @@
+Twikへようこそ。
+http://jtropy.appspot.com/
+
+Twick(ついっく）はGAE/J上で動かしているTwitterクライアントです。
+クライアント側にはjQueryを利用しています。
+http://semooh.jp/jquery/
+
+サーバ側はJavaで実装。
+Ajax部分はDWRを使っています。
+http://directwebremoting.org/dwr/index.html
+
+TwitterとのやりとりはTwitter4Jを利用しています。
+http://yusuke.homeip.net/twitter4j/ja/index.html
+
+
+当初予定していた機能の半分くらいしか実装できていないため、随時機能追加していきます。

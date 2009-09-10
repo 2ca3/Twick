@@ -1,0 +1,2 @@
+appcfg update ./war 
+PAUSE
