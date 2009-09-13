@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <title>Twick:振分け</title>
+
+  </head>
+  <body>
+      <img src="/images/loadinganimation.gif" id="loding2" />
+      <table>
+        <tr>
+          <td class="body">
+            <h3>振分けルール追加</h3>
+            振分けユーザ：<select name="noSelectUser" id="noSelectUser"></select><br />
+            振分けタブ：<select name="select_tab" id="select_tab" onchange="TwickSub.dspNoSelect($('#select_tab').val())">
+                          <option value="5">カスタム1</option>
+                          <option value="6">カスタム2</option>
+                        </select><br />
+            <input type="checkbox" name="leave" id="leave" checked />つぶやきに残す<br />
+            <input type="button" value="振分けルールに追加" onclick="TwickDwr.addSelectScreenName($('#select_tab').val(), $('#noSelectUser').val(), getElementById('leave').checked, TwickSub.addSelectCallBack);" />
+          </td>
+        </tr>
+        <tr>
+          <td class="body">
+            <h3>振分けルール解除</h3>
+            振分け解除ユーザ：<select name="selectUser" id="selectUser"></select><br />
+            振分け解除タブ：<select name="noselect_tab" id="noselect_tab" onchange="TwickSub.dspSelect($('#noselect_tab').val())">
+                              <option value="5">カスタム1</option>
+                              <option value="6">カスタム2</option>
+                            </select><br />
+            <input type="button" value="振分けルールから除外" onclick="TwickDwr.removeSelectScreenName($('#noselect_tab').val(), $('#selectUser').val(), TwickSub.removeSelectCallBack)" />
+          </td>
+        </tr>
+      </table>
+<script type="text/javascript">
+	var TwickSub={
+		addSelectCallBack:function(data)
+		{
+		  if (data != null && typeof data == 'object'){
+			alert(dwr.util.toDescriptiveString(data, 2));
+		  }else{
+			alert("振分けルールを追加しました");
+			TwickSub.dspNoSelect($('#select_tab').val());
+			TwickSub.dspSelect($('#noselect_tab').val());
+		  } 
+		},
+
+		removeSelectCallBack:function(data)
+		{
+		  if (data != null && typeof data == 'object'){
+			alert(dwr.util.toDescriptiveString(data, 2));
+		  }else{
+			alert("振分けルールから除外しました");
+			TwickSub.dspNoSelect($('#select_tab').val());
+			TwickSub.dspSelect($('#noselect_tab').val());
+		  } 
+		},
+
+		dspSelect:function (tabNo){
+			$('#loding2').css("visibility","");
+			$('#selectUser').css("visibility","hidden");
+			TwickDwr.getSelectScreenNamesAsJson(tabNo, 
+				function(data){
+					if (data != null && typeof data == 'object'){
+						alert(dwr.util.toDescriptiveString(data, 2));
+					}else{
+						$('#selectUser').empty();
+						$.each(eval(data), function(){
+							$('#selectUser').append($('<option>').attr({ value: this.screenName }).text(this.name));
+						});
+						
+						$('#selectUser').css("visibility","");
+						$('#loding2').css("visibility","hidden");
+					}
+				});
+		},
+
+		dspNoSelect:function (tabNo){
+			$('#loding2').css("visibility","");
+			$('#noSelectUser').css("visibility","hidden");
+			TwickDwr.getNoSelectScreenNamesAsJson(tabNo, 
+				function(data){
+					if (data != null && typeof data == 'object'){
+						alert(dwr.util.toDescriptiveString(data, 2));
+					}else{
+						$('#noSelectUser').empty();
+						$.each(eval(data), function(){
+							$('#noSelectUser').append($('<option>').attr({ value: this.screenName }).text(this.name));
+						
+						});
+						$('#noSelectUser').css("visibility","");
+						$('#loding2').css("visibility","hidden");
+					}
+				});
+		}
+	}
+	TwickSub.dspNoSelect(5);
+	TwickSub.dspSelect(5);
+
+</script>
+  </body>
+</html>

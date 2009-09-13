@@ -5,7 +5,7 @@
             <th width="20"></th>
             <th width="60">名前</th>
             <th width="">投稿</th>
-            <th width="35">menu</th>
+            <th width="70">メニュー</th>
             <th width="70">日時</th>
             <th width="70">ソース</th>
         </tr>
@@ -15,9 +15,9 @@
         <tr>
             <td><a href="http://twitter.com/{$T.r.screenName}"><img alt="{$T.r.screenName}" height="20" src="{$T.r.profileImageURL}" width="20" border="0"/></a></td>
             <td><a href="http://twitter.com/{$T.r.screenName}" title="{$T.r.screenName}">{$T.r.name}</a></td>
-            <td class="text">{$T.r.text.replace(/(http:\/\/[\x21-\x7e]+)/gi, "<a href='$1' target='_blank'>$1</a>")}</td>
-            <td><div style="cursor: pointer; cursor: hand;" title="返信する" onclick="$('#input').val('@{$T.r.screenName} '+ $('#input').val())">返信</div>
-                <div style="cursor: pointer; cursor: hand;" title="お気に入りにいれる" onclick="TwickDwr.createFavorite({$T.r.id}, Twick.favoriteCallBack)">お気に</div>
+            <td class="text"><span style="cursor: pointer; cursor: hand;" title="{$T.r.text}" onclick="$('#input').val('@{$T.r.screenName} '+ $('#input').val())">{$T.r.text.replace(/(http:\/\/[\x21-\x7e]+)/gi, "<a href='$1' target='_blank'>$1</a>")}</span></td>
+            <td><span style="cursor: pointer; cursor: hand;" title="返信する" onclick="$('#input').val('@{$T.r.screenName} '+ $('#input').val())">返信</span>/
+                <span style="cursor: pointer; cursor: hand;" title="お気に入りにいれる" onclick="TwickDwr.createFavorite({$T.r.id}, Twick.favoriteCallBack)">お気に</span>
             </td>
             <td>{$T.r.createdAt}</td>
             <td>{$T.r.source.replace(/&lt;/g,"<").replace(/&gt;/g," target='_blank' >").replace(/&quot;/g,"\"")}</td>

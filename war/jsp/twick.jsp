@@ -20,13 +20,12 @@
 	<link type="text/css" href="css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
 	<link type="text/css" href="css/thickbox/thickbox.css" rel="stylesheet" />
 <% User user = (User)request.getAttribute("user"); %>
-  <style>
+<style>
 	body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 10px;
 	  color: #<%= user.getProfileTextColor() %>;
 	  background-repeat: repeat;
 	  background-color: #<%= user.getProfileBackgroundColor() %>;
 	  background-image: url(<%= user.getProfileBackgroundImageUrl() %>);
-/*	  	  background-image: url('images/stripe.png'); */
 	}
 		ul#icons {margin: 0; padding: 0;}
 		ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
@@ -37,9 +36,9 @@
 	div#foot{
 		background-color: #ffffff;
 	}
-  </style>
+</style>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 	 $(document).ready(function(){
 		$(function(){
 			// Tabs
@@ -54,7 +53,7 @@
 
 			window.setInterval(function(){
 				Twick.dspTimeLine($tabs.tabs('option', 'selected'),$('#page').text());
-			},60000);
+			},180000);
 
 			//hover states on the static widgets
 	  		 $('#dialog_link, ul#icons li').hover(
@@ -98,26 +97,29 @@
 
 		dspTimeLine:function(selected,page)
 		{
-			if(selected == 0){
-				TwickDwr.getFriendsTimelineAsJsonStr(page,Twick.timelineCallBack);
-			}else if(selected == 1){
-				TwickDwr.getMentionsAsJsonStr(page, Twick.timelineCallBack);
+			$('#loding').css("visibility","");
+
+			if(selected == 1){
+				TwickDwr.getMentionsAsJson(page, Twick.timelineCallBack);
 			}else if(selected == 2){
-				TwickDwr.getMyTimelineAsJsonStr(page, Twick.timelineCallBack);
+				TwickDwr.getMyTimelineAsJson(page, Twick.timelineCallBack);
 			}else if(selected == 3){
-				TwickDwr.getFavoritesAsJsonStr(page, Twick.timelineCallBack);
+				TwickDwr.getFavoritesAsJson(page, Twick.timelineCallBack);
+			}else{
+				TwickDwr.getFriendsTimelineAsJson(page,(parseInt(selected)+1),Twick.timelineCallBack);
 			}
 			Twick.dspPage(page);
 		},
 
 		timelineCallBack:function(data)
 	    {
-	      if (data != null && typeof data == 'object'){
-	        alert(dwr.util.toDescriptiveString(data, 2));
-	      }else{
-	        $("div.recent_result").processTemplate(eval(data));
-	        $("div.timeline_tbl").height(Twick.height() - 100).css({cursor:"auto"});
-	      }
+			if (data != null && typeof data == 'object'){
+				alert(dwr.util.toDescriptiveString(data, 2));
+			}else{
+				$("div.recent_result").processTemplate(eval(data));
+				$("div.timeline_tbl").height(Twick.height() - 100).css({cursor:"auto"});
+			}
+			$('#loding').css("visibility","hidden");
 	    },
 
 		inputCallBack:function(data)
@@ -125,8 +127,10 @@
 		  if (data != null && typeof data == 'object'){
 		     alert(dwr.util.toDescriptiveString(data, 2));
 		  }else{
-		     TwickDwr.getFriendsTimelineAsJsonStr(1, Twick.timelineCallBack);
-		     $('#input').val('');
+			Twick.dspTimeLine($tabs.tabs('option', 'selected'),1);
+			$('#input').val('');
+			$('#count').text('140');
+			
 		  } 
 		},
 
@@ -135,7 +139,6 @@
 		  if (data != null && typeof data == 'object'){
 		     alert(dwr.util.toDescriptiveString(data, 2));
 		  }else{
-		     TwickDwr.getFriendsTimelineAsJsonStr(1, Twick.timelineCallBack);
 		     alert("お気に入りに登録しました");
 		  } 
 		},
@@ -157,26 +160,33 @@
 			$("#page_n").html('<a href="javascript:void(0)" onclick="Twick.dspTimeLine('+ $('#tabs').tabs().tabs('option', 'selected') + ',' + (parseInt(page)+1) + '); return false;">　次のページ＞</a>　');
 		}
 	}
-  </script>
-  </head>
-  <body>
+	</script>
+</head>
+
+<body>
+  <img src="/images/loadinganimation.gif" id="loding" />
   <!-- つぶやく -->
-  <font size="3" color="#ffffff"><strong>いまなにしてる？</strong></font><input class='itext' type='text' size='120' value='' id='input' maxlength="140" onKeyup="$('#count').text(140 - this.value.length)" />
+  <font size="3" color="#ffffff"><strong>いまなにしてる？</strong></font><input class='itext' type='text' size='100' value='' id='input' maxlength="140" onKeyup="$('#count').text(140 - this.value.length)" />
   <input class='ibutton' type='button' onclick='TwickDwr.executeStatus($("#input").val(), Twick.inputCallBack);' value='投稿する' /><span id="count" style="font-size:16px;color:#ffffff;">140</span>
-	
+  <font size="2" color="#ffffff"><strong><a href="/select.html?width=230&height=270" class="thickbox">振分けルール</a></strong></span>
+
 	<!-- Tabs --> 
 		<div id="tabs"> 
 			<ul> 
-				<li><a href="#tabs-1">Recent</a></li>
-				<li><a href="#tabs-2">Reply</a></li>
-				<li><a href="#tabs-3">My</a></li>
-				<li><a href="#tabs-4">Favotites</a></li>
+				<li><a href="#tabs-1">つぶやき</a></li>
+				<li><a href="#tabs-2">返信</a></li>
+				<li><a href="#tabs-3">自分のつぶやき</a></li>
+				<li><a href="#tabs-4">お気に入り</a></li>
+				<li><a href="#tabs-5">カスタム1</a></li>
+				<li><a href="#tabs-6">カスタム2</a></li>
 			</ul>
 
 			<div id="tabs-1"><div class='recent_result'></div></div> 
 			<div id="tabs-2"><div class='recent_result'></div></div> 
 			<div id="tabs-3"><div class='recent_result'></div></div>
-			<div id="tabs-4"><div class='recent_result'></div></div> 
+			<div id="tabs-4"><div class='recent_result'></div></div>
+			<div id="tabs-5"><div class='recent_result'></div></div>
+			<div id="tabs-6"><div class='recent_result'></div></div>
 			<div class="paging">
 <span id="page_b"></span>
 <span id="page"></span>

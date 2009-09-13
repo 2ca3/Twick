@@ -10,15 +10,10 @@
 		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
 		<!-- <property name="org.apache.commons.logging.Log" value="org.apache.commons.logging.impl.Log4JLogger"/> -->
 
-		<property name="twitterConsumerKey" value="{ConsumerKey}"/>
-		<property name="twitterConsumerSecret" value={"ConsumerSecret}"/>
-		<property name="cryptKey" value="{Auth_cryptKey}"/>
+		<property name="twitterConsumerKey" value="{twitterConsumerKey}"/>
+		<property name="twitterConsumerSecret" value="{twitterConsumerSecret}"/>
+		<property name="cryptKey" value="{cryptKey}"/>
 	</system-properties>
-<!--
-  <env-variables>
-    <env-var name="DEFAULT_ENCODING" value="UTF-8" />
-  </env-variables>
--->
   <static-files>
     <include path="/**.ico" />
     <include path="/**.png" />
