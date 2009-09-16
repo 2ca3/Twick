@@ -7,6 +7,16 @@ Author: 2ca3
 
 table.tbl {
   margin-left:auto;margin-right:auto;
+/*  width: 600px;
+  height: 250px;*/
+  margin: -150px 0px 0px -300px;
+  left: 50%;
+  top: 50%;
+  position: absolute;  
+}
+
+table.tbl2 {
+  margin-left:auto;margin-right:auto;
   width: 600px;
   height: 250px;
   margin: -150px 0px 0px -300px;

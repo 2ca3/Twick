@@ -16,7 +16,7 @@
   </style>
   </head>
   <body>
-      <table class="tbl">
+      <table class="tbl2">
         <tr>
           <td class="image">
               <img alt="Twick" src="images/logo.png" border="0" />
@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td class="body">
-Twick(ついっく)はWeb上で動くTwitterクライアントです。<br>
+Twick(ついっく)はブラウザ上で動くTwitterクライアントです。<br>
 以下のリンクをクリックして認証して下さい。<br />
 <a href="<%= request.getAttribute("authurl") %>"><img src="/images/twitter_logo_header.png" border="0">で認証</a><br />
 <!--
@@ -37,7 +37,7 @@ TwickはOAuth認証を用いてTwitterの情報を取得します。<a href="htt
         </tr>
 <tr>
     <td>
-    <a href="/info.html">Twick(ついっく)とは？</a>
+    <a href="/info.html" target="_blank">Twick(ついっく)とは？</a>
     </td>
 </tr>
 

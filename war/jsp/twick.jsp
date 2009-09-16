@@ -77,9 +77,9 @@
 
 	});
 
-	$(window).resize(function(){
-		$("div.timeline_tbl").height(Twick.height() - 100).css({cursor:"auto"});
-	});
+//	$(window).resize(function(){
+//		$("div.timeline_tbl").height(Twick.height() - 100).css({cursor:"auto"});
+//	});
 
 	var Twick={
 		height:function (){
@@ -214,7 +214,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
     </td>
     <td>
-  <font size="2">自動認証：</font><span id="foo" onclick="if( $('#autoAuth').attr('checked')){TwickDwr.executeAutoAuth(Twick.autoAuthCallBack)}else{TwickDwr.removeAutoAuth(Twick.autoAuthCallBack)}"><input type="checkbox" id="autoAuth" /></span>
+  <font size="2" color="#000000">自動認証：</font><span id="foo" onclick="if( $('#autoAuth').attr('checked')){TwickDwr.executeAutoAuth(Twick.autoAuthCallBack)}else{TwickDwr.removeAutoAuth(Twick.autoAuthCallBack)}"><input type="checkbox" id="autoAuth" /></span>
   <span id='autoAuthResult' class='reply'></span> 
     </td>
     <td>
