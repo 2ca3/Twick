@@ -23,9 +23,7 @@
 <style>
 	body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 10px;
 	  color: #<%= user.getProfileTextColor() %>;
-	  background-repeat: repeat;
-	  background-color: #<%= user.getProfileBackgroundColor() %>;
-	  background-image: url(<%= user.getProfileBackgroundImageUrl() %>);
+	  background: #<%= user.getProfileBackgroundColor() %> url(<%= user.getProfileBackgroundImageUrl() %>) fixed no-repeat top left;
 	}
 		ul#icons {margin: 0; padding: 0;}
 		ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
