@@ -15,7 +15,7 @@
             <td class="text"><span title="{$T.r.text}">{$T.r.text.replace(/(http:\/\/[\x21-\x7e]+)/gi, "<a href='$1' target='_blank'>$1</a>")}</span>&nbsp;
               <font color="#999999">
                 [<span style="cursor: pointer; cursor: hand; text-decoration: underline; title="返信する" onclick="$('#input').val('@{$T.r.screenName} '+ $('#input').val()); $('#input').focus();">返信</span>/
-                <span style="cursor: pointer; cursor: hand; text-decoration: underline; title="引用する" onclick="$('#input').val($('#input').val() + ' RT @{$T.r.screenName} {$T.r.text}'); $('#input').focus();">引用</span>/
+                <span style="cursor: pointer; cursor: hand; text-decoration: underline; title="引用する" onclick="$('#input').val($('#input').val() + ' RT @{$T.r.screenName}: {$T.r.text}'); $('#input').focus();">引用</span>/
                 <span style="cursor: pointer; cursor: hand; text-decoration: underline;" title="お気に入りにいれる" onclick="TwickDwr.createFavorite({$T.r.id}, Twick.favoriteCallBack)">お気に入り</span>]
                 [{$T.r.createdAt}]
               </font>
