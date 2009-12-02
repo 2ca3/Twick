@@ -312,14 +312,16 @@ public class TwickDwr {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			TabBean tabBean = pm.getObjectById(TabBean.class, twitter.verifyCredentials().getScreenName() + "_" + String.valueOf(tabNo));
-			if (tabNo >= 5) {
-				for (String screenName : tabBean.getSelectScreenNames()) {
-					selectMap.put(screenName, true);
+			if (tabBean != null){
+				if (tabNo >= 5 && tabBean.getSelectScreenNames() != null) {
+					for (String screenName : tabBean.getSelectScreenNames()) {
+						selectMap.put(screenName, true);
+					}
 				}
-			}
-			if (tabNo <= 4) {
-				for (String screenName : tabBean.getNotSelectScreenNames()) {
-					notSelectMap.put(screenName, true);
+				if (tabNo <= 4 && tabBean.getNotSelectScreenNames() != null) {
+					for (String screenName : tabBean.getNotSelectScreenNames()) {
+						notSelectMap.put(screenName, true);
+					}
 				}
 			}
 		} catch (JDOObjectNotFoundException e) {
