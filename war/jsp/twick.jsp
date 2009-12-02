@@ -71,7 +71,7 @@
 
 		$("div.timeline_tbl").height(Twick.height() - 100).css({cursor:"auto"});
 
-		Twick.dspPage(1);
+		Twick.dspPage(0,1);
 
 	});
 
@@ -106,7 +106,7 @@
 			}else{
 				TwickDwr.getFriendsTimelineAsJson(page,(parseInt(selected)+1),Twick.timelineCallBack);
 			}
-			Twick.dspPage(page);
+			Twick.dspPage(selected,page);
 		},
 
 		timelineCallBack:function(data)
@@ -147,15 +147,15 @@
 			else if (dwr.util.toDescriptiveString(data, 1) == false) dwr.util.setValue('autoAuthResult', '失敗');
 		},
 
-		dspPage:function(page)
+		dspPage:function(selected,page)
 		{
 			$("#page").text(page);
 			if(page == 1){
 				$("#page_b").text('＜前のページ　');
 			}else{
-				$("#page_b").html('<a href="javascript:void(0)" onclick="Twick.dspTimeLine('+ $('#tabs').tabs().tabs('option', 'selected') + ',' + (parseInt(page)-1) + '); return false;">＜前のページ</a>　');
+				$("#page_b").html('<a href="javascript:void(0)" onclick="Twick.dspTimeLine('+ selected + ',' + (parseInt(page)-1) + '); return false;">＜前のページ</a>　');
 			}
-			$("#page_n").html('<a href="javascript:void(0)" onclick="Twick.dspTimeLine('+ $('#tabs').tabs().tabs('option', 'selected') + ',' + (parseInt(page)+1) + '); return false;">　次のページ＞</a>　');
+			$("#page_n").html('<a href="javascript:void(0)" onclick="Twick.dspTimeLine('+ selected + ',' + (parseInt(page)+1) + '); return false;">　次のページ＞</a>　');
 		}
 	}
 	</script>
