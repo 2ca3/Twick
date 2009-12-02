@@ -14,10 +14,16 @@
 		<property name="twitterConsumerSecret" value="{twitterConsumerSecret}"/>
 		<property name="cryptKey" value="{cryptKey}"/>
 	</system-properties>
+<!--
+  <env-variables>
+    <env-var name="DEFAULT_ENCODING" value="UTF-8" />
+  </env-variables>
+-->
   <static-files>
     <include path="/**.ico" />
     <include path="/**.png" />
     <include path="/**.jpg" />
+    <include path="/**.gif" />
     <include path="/**.css" />
     <include path="/**.js" />
     <include path="/**.jtl" />
